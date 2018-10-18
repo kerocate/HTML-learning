@@ -1,0 +1,114 @@
+﻿.one {
+    width: 100%;
+    height: 200px;
+    background-color: green;
+    line-height: 200px;
+
+}
+.two {
+    margin-top: 200px;
+    height: 300px;
+    line-height: 300px;
+    background-color: yellow;
+    z-index: 2;
+}
+/*上面是移动遮盖效果wwwww*/
+
+/*下面是css点击响应动画效果www*/
+
+/*animateCore */
+.animateBox>a:first-of-type {
+  /*保证动画盒子的第一个透明欺骗a标签存在*/
+  display:inline-block;
+  text-decoration:none;
+
+}
+.animateBox>a {
+  /*保证除了第一个所有的a标签不存在*/
+  display:none;
+  text-decoration:none;
+
+}
+.animateBox>a:target {
+  /*让第一个a标签被点击后消失*/
+  display:none;
+  text-decoration:none;
+
+}
+.animateBox>a:target +a {
+  /*让剩余的a标签显示*/
+  display:inline-block;
+  text-decoration:none;
+}
+
+/*baselayer*/
+.baselayer {
+  box-shadow:1px 3px 5px #888888;
+  position:absolute;
+  left:200px;top:100px;
+  width:200px;height:200px;
+  background:rgba(300,100,100,1);
+  border-radius: 50%;
+}
+
+/*fakeLayer*/
+.fakeLayer {
+  /*透明点击欺骗层的外层（应是clearfix方便内容做偏移
+   *偏移尽可能小*/
+  position:absolute;
+  left:200px;
+  top:100px;
+  width:200px;
+  height:200px;
+}
+.fakeLayerDiv {
+  /*透明点击欺骗层的里层
+ *模拟点击范围*/
+ width:200px;
+ height:200px;
+ background:rgba(100,100,100,0);
+ border-radius: 50%;
+}
+
+/*framesLayer*/
+.framesLayerBox {
+  position:absolute;
+  left:200px;
+  top:100px;
+  width:200px;
+  height:200px;
+}
+.framesLayerInner1 {
+  animation: animated1 0.5s;
+  animation-timing-function:linear;
+  position:absolute;
+  left:50px;top:50px;
+  width:100px;height:100px;
+  background:rgba(100,100,100,0);
+  border-radius: 50%;
+}
+.framesLayerInner2 {
+  animation: animated2 0.5s;
+  animation-timing-function:linear;
+  position:absolute;
+  left:50px;top:50px;
+  width:100px;height:100px;
+  background:rgba(300,100,100,0);
+  border-radius: 50%;
+}
+
+/*animation*/
+@keyframes animated1{
+  0%     {transform: scale(0.1);}
+	25%    {;}
+	50%    {transform: scale(2.0);background:rgb(285,85,85);}
+	75%    {;}
+  100%   {transform: scale(0.1);background:rgb(300,100,100);}
+}
+@keyframes animated2{
+  0%     {transform: scale(0.1);}
+	25%    {;}
+	50%    {transform: scale(2.0);background:rgb(250,30,30);}
+	75%    {;}
+  100%   {transform: scale(0.1);background:rgb(300,100,100);}
+}

@@ -1,0 +1,350 @@
+* {
+    margin: 0 auto;/*上下0左右auto *左右居中* */
+    text-decoration: none;
+    font-family: 'Microsoft Yahei';
+}
+html, body {
+    height: 100%;
+    width: 100%;
+}
+/*我知道一个事实：一个div块级元素没有主动为其设置宽度和高度，浏览器会为其分配可使用的最大宽度(比如全屏宽度)，但是不负责分配高度，块级元素的高度是由子元素堆砌撑起来的。那么，html和body标签的高度也都是由子级元素堆砌撑起来的。
+
+还有，元素高度百分比需要向上遍历父标签要找到一个定值高度才能起作用，如果中途有个height为auto或是没有设置height属性，则高度百分比不起作用，此时的情况是父元素高度依赖子元素堆砌撑高，而子元素依赖父元素的定高起作用，互相依赖，却都无法依赖，死循环了。
+
+那如何解决这个问题呢，可以让子元素先定高，这样是可以解决；但是如果子元素一定要依赖父元素高度呢？
+
+上面的html代码可以看出，div的父元素是body，body的父元素是html，通过height:100%层层向上，找到顶级获取定高。
+
+所以出现了html和body同时设置height:100%，那html的上级是谁呢？
+
+通过上面的事实知道，浏览器负责分配块级元素宽度，那么浏览器也一定可以分配高度(只是没有做)，那么浏览器本身是有宽度和高度的，设置html的height:100%，就可以获取浏览器的定高了，后面的body和div也就有了依赖。
+---------------------
+作者：javaloveiphone
+来源：CSDN
+原文：https://blog.csdn.net/javaloveiphone/article/details/51098972?utm_source=copy
+版权声明：本文为博主原创文章，转载请附上博文链接！*/
+
+body {
+    min-height: 1080px;
+} /*全屏时就没有上下滑条啦*/
+
+/*---------------clearfix---------------------*/
+.clearFix {
+    *zoom: 1;
+}
+
+.clearFix:before, .clearFix:after {
+    content: "";
+    display: table;
+    clear:both;
+}
+/*如果有一个DIV作为外部容器，内部的DIV如果设置了float样式，则外部的容器DIV因为内部没有 clear，导致不能被撑开。
+
+外层div加上clearfix样式。clearfix定义如下：
+
+.clearfix:after{visibility:hidden;display:block;font-size:0;content: " ";clear:both;height:0;}
+
+.clearfix{*zoom:1;}
+
+这样修改以后显示正常。
+
+整段代码就相当于在浮动元素后面跟了个宽高为0的空div，然后设定它clear:both来达到清除浮动的效果。（这个css的原理是经过使用 after伪对象,它将在应用clearfix的元素结尾添加content中的内容,也就是一个".",并且把他设置为块级元素 (display="block");高度设置为0,clear="both",然后将其内容隐藏掉(visibility="hidden").这样就会撑开此块级元素.）
+
+之所以用它，是因为，你不必在html文件中写入大量无意义的空标签，又能清除浮动。
+
+.clearfix { *zoom:1;}<----这是针对于IE6的，因为IE6不支持:after伪类，这个神奇的zoom:1让IE6的元素可以清除浮动来包裹内部元素。具体意思的话，不用深究，听说微软的工程师自己都无法解释清楚。height:1%效果也是一样。
+
+作者：额尔齐斯冷
+链接：https://www.jianshu.com/p/1aca65d70c32
+來源：简书
+简书著作权归作者所有，任何形式的转载都请联系作者获得授权并注明出处。*/
+
+/*也就是说，如果想要div嵌套，为了保证能正常显示而存在的fix
+更详细解释参见：https://blog.csdn.net/tanga842428/article/details/77799951*/
+
+/*overflow: hidden; display: block由父级元素控制内部的范围
+  display: table; 由子级元素控制父级元素的大小*/
+
+/*-----------clearfix-----------------------*/
+
+
+/*------------------------banner----------------------------*/
+
+@font-face {
+    src: url(../fonts/yueyuan.ttf);
+    font-family: 'yueyuan';
+}
+
+.bannerBackground {
+    width: 100%;
+    min-width: 1100px;
+    height: 600px;
+    background: url(../images/g_banner_background.png) no-repeat center center;
+    background-size: cover; /*不论怎么样图像都是最大化*/
+    /*下面是移动遮挡效果哟*/
+    position: fixed;
+    z-index: -1;
+}
+.banner {
+    width: 100%;
+    min-width: 1100px;
+    height: 600px;
+}
+.bannerNav {
+    width: 1100px;
+    height: 100px;
+    position: relative;
+}
+
+.bnLogo {
+    height: 60px;
+    width: 60px;
+    background: url(../images/g_logo.png) no-repeat center center;
+    margin: 20px 20px 20px 30px;
+    border-radius: 12px;
+    overflow: hidden;
+    float: left;
+}
+.bnTitle {
+    line-height: 100px;
+    font-size: 33px;
+    color: white;
+    font-family: 'yueyuan';
+}
+
+/*原版的设备选择表格加hover动画 参数都是照源码来的啦www*/
+.bnDevice {
+    float: right;
+    padding: 0;
+    margin: 23px 0px 23px 0px;
+}
+.bnDevice .bnDeviceItem {
+    height: 54px;
+    position: relative;
+    list-style: none;
+    float: left;
+    margin-right: 30px;
+    user-select: none;
+    cursor: pointer;
+    padding: 0 5px;
+    line-height: 54px;
+    color: #ccc;
+    vertical-align: middle;
+    transition: all 0.3s;
+}
+.bnDevice .bnDeviceItem:after {
+    content: "";
+    display: block;
+    height: 0;
+    width: 100%;
+    position: absolute;
+    left: 0;
+    bottom: -2px;
+    border: 1px solid transparent;
+    border-radius: 1px;
+    transition: all 0.3s;
+}
+.bnDevice .bnDeviceItem i {
+    font-size: 2em;
+    line-height: 54px;
+    margin-right: 10px;
+}
+.bnDevice .bnDeviceItem:hover {
+    color: #fb6c6d;
+}
+.bnDevice .bnDeviceItem.checked {
+    color: #fb6c6d;
+}
+.bnDevice .bnDeviceItem.checked:after {
+    border: 1px solid #fb6c6d;
+}
+/*原版的设备选择表格加hover动画 这里用到了伪类 和后代选择器（包含选择器）*/
+
+.bannerContent {
+    width: 1100px;
+    height: 500px;
+    position: relative;
+}
+.bannerShow-page {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+.info {
+    width: 550px;
+    height: 100%;
+    margin: 0;
+    display: inline-block;
+    		box-sizing: border-box;
+       -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    padding: 80px 0 0 60px;
+}
+
+
+.mobile-div {
+    position: relative;
+}
+.GDevice {
+    color: #efefef;
+    font-family: 'yueyuan';
+    font-size: 33px;
+    position: relative;
+}
+.GDevice:after {
+    content: "";/*要after显示多少要有点内容*/
+    display: block;
+    height: 0;
+    width: 200px;
+    position: absolute;
+    bottom: -1px;
+    border-top: 1px solid #fff;
+}
+.GDevice .GName {
+    font-size: 53px;
+    font-family: 'yueyuan';
+    padding-right: 15px;
+}
+.GDevice .Version {
+    display: inline-block;
+    height: 30px;
+    width: 105px;
+    color: #fff;
+    font-size: 20px;
+    line-height: 30px;
+    text-align: center;
+    margin-left: 25px;
+    border-radius: 5px;
+    background: #fb6c6d;
+    user-select: none;
+    cursor: default;
+}
+
+
+.Slogan {
+    font-size: 33px;
+    color: #fff;
+    line-height: 60px;
+}
+
+
+.Download {
+    margin: 20px 0;
+    height: 120px;
+    width: 435px;
+}
+.DownloadBt {
+    float: left;
+    width: 285px;
+    height: 100%;
+    text-align: center;
+    line-height: 120px;
+    font-size: 33px;
+    color: #fff;
+    border-radius: 10px;
+    background: #fb6c6d;
+    user-select: none;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+.DownloadBt:hover {
+    background: #ff5454;
+}
+.DownloadBt i {
+    margin-right: 25px;
+}
+.QRcode {
+    float: right;
+    width: 120px;
+    height: 100%;
+}
+.QRcode img {
+    height: 100%;
+    border-radius: 5px;
+    user-select: none;
+    cursor: default;
+}
+.package-size {
+    font-size: 17px;
+    color: #fff;
+    margin-right: 40px;
+}
+.update-info {
+    font-size: 17px;
+    color: #fff;
+}
+
+
+.DevicePreview {
+    width: 315px;
+    height: 478px;
+    position: absolute;
+    right: 82px;
+    bottom: 0;
+    background-repeat: no-repeat;
+    background-position: top center;
+    background-size: cover;
+    background-image: url(../images/g_device_preview_android.png);
+}
+/*------------------------banner----------------------------*/
+
+/*-----------------------Intro------------------------------*/
+
+.Intro {
+  width: 1040px;
+  height: 410px;
+  padding: 0 30px;
+}
+
+.Feature {
+    height: 100%;
+    width: 25%;
+    float: left;
+}
+.FeaturePic {
+    width: 150px;
+    height: 150px;
+    margin: 80px auto 0;
+}
+.FeaturePicDiv {
+    width: 150px;
+    height: 150px;
+    margin: 80px auto 0;
+}
+.Feature:nth-child(1) .FeaturePic {background: url(../images/g_feature.png) no-repeat 0px 0px;}
+.Feature:nth-child(2) .FeaturePic {background: url(../images/g_feature.png) no-repeat -150px 0px;}
+.Feature:nth-child(3) .FeaturePic {background: url(../images/g_feature.png) no-repeat -300px 0px;}
+.Feature:nth-child(4) .FeaturePic {background: url(../images/g_feature.png) no-repeat -450px 0px;}
+/*background的定位来选择图片的某一部分
+ *用:nth-child(x)子元素选择器来切换图片的方位*/
+
+.FeatureWords {
+    margin-top: 20px;
+    text-align: center;
+    color: #373737;
+    font-size: 18px;
+}
+.FeatureWords:last-child {
+  /*这控制的是第第一行以外的上外边距
+   *用了last-child选择器*/
+    margin-top: 0px;
+}
+/*-----------------------Intro------------------------------*/
+
+.footer {
+    width: 100%;
+    min-width: 1100px;
+    text-align: center;
+    height: 70px;
+    line-height: 70px;
+    font-size: 13px;
+    color: #989898;
+    background: #efefef;
+  }
+
+.whiteblock {
+  width: 100%;
+  min-width: 1100px;
+  background: white;
+  height: 410px;
+}

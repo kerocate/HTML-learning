@@ -1,0 +1,86 @@
+/*下面是css点击响应动画效果www*/
+
+/*animateCore */
+.animateBoxes {
+}
+.animateBoxes>a:first-of-type {
+  /*保证动画盒子的第一个透明欺骗a标签存在*/
+  display:inline-block;
+  text-decoration:none;
+
+}
+.animateBoxes>a {
+  /*保证除了第一个所有的a标签不存在*/
+  display:none;
+  text-decoration:none;
+
+}
+.animateBoxes>a:target {
+  /*让第一个a标签被点击后消失*/
+  display:none;
+  text-decoration:none;
+
+}
+.animateBoxes>a:target +a {
+  /*让剩余的a标签显示*/
+  display:inline-block;
+  text-decoration:none;
+}
+
+/*baselayer*/
+
+/*fakeLayer*/
+.fakeLayer {
+  position: absolute;
+  margin-left: 55px;
+  background: rgba(0,0,0,0);
+}  /*透明点击欺骗层的外层（应是clearfix方便内容做偏移
+   *偏移尽可能小*/
+.fakeLayerDiv {
+  width: 150px;
+  height: 150px;
+  margin: 80px auto 0;
+  border-radius: 50%;
+}  /*透明点击欺骗层的里层
+ *模拟点击范围*/
+
+/*framesLayer*/
+.framesLayerBox {
+  position: absolute;
+  left: 20px;
+  height: 100%;
+  width: 25%;
+  float: left;
+  border: 1px solid green;
+}
+.framesLayerInner1 {
+  margin-left: 55px;
+  animation: animated1 0.5s;
+  position:absolute;
+}
+.framesLayerInner2 {
+  width: 150px;
+  height: 150px;
+  margin: 77px auto 0;
+  animation: animated1 0.5s;
+  position:absolute;
+  background: url(../images/g_feature.png) no-repeat 0px 0px;
+  border-radius: 50%;
+  left: 0%;right: 0%;
+}
+
+/*animation*/
+@keyframes animated1{
+  0%     {;}
+	25%    {transform: scale(1.2) rotate(15deg);}
+	50%    {transform: scale(0.7) rotate(-15deg);}
+	75%    {transform: rotate(5deg);}
+  100%   {transform: scale(1.0);}
+}
+@keyframes animated2{
+  0%     {transform: scale(0.1);}
+	25%    {;}
+	50%    {transform: scale(2.0);background:rgb(250,30,30);}
+	75%    {;}
+  100%   {transform: scale(0.1);background:rgb(300,100,100);}
+}
