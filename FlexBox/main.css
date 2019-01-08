@@ -1,0 +1,67 @@
+/* 
+CSS通用属性
+inherit[继承]: from parents
+initial[默认]: default value of property to element. 
+unset[不设置]: same as inherit or initial 
+*/
+    /* 
+    The direction[方向] of main-axis(x): 
+
+    column[竖直]: vertical[垂直] from top to bottom
+    column-reverse[相反]: vertical from bottom to top
+
+    row: line[直线] along
+    row-reverse: line along and from end to start
+    */   
+
+   /*[换行] 
+   warp
+   nowrap
+   wrap-reverse
+   */
+
+    /* flex-flow: <flex-direction> + <flex-wrap>; 
+       flex-flow: column warp; 
+    */
+/*
+
+
+
+flex interpretation
+
+container
+    flex: property sets how a flex item will grow or 
+          shrink to fit the space.It is a shorthand for
+          flex-grow, flex-shrink, and flex-basis.
+
+    align-: along the cross-axis(y)
+    justify-: along the main-axis(x)
+
+    align-items: alignment of items on the Cross Axis
+    justify-content：distributes space between and around content 
+                     items along the main-axis
+    align-content: distributes space between and around content
+                     items along the cross-axis(flex中多子元素才生效)
+
+
+    叫cross和main（交叉和主轴），是因为flex-direction可以指定
+    主轴的走向（垂直或竖直）
+
+items
+    order: Sequential[先后顺序]
+
+*/
+
+/* This is flex container */
+.container{
+    margin: 0 auto;
+    width: 500px;
+    height: 500px;
+    outline: 1px black solid;
+
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+}
