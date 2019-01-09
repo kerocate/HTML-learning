@@ -54,14 +54,45 @@ items
 
 /* This is flex container */
 .container{
-    margin: 0 auto;
-    width: 500px;
-    height: 500px;
+    width: 100px;
+    height: 100px;
     outline: 1px black solid;
+    float: left;
 
     display: flex;
     flex-direction: column;
     flex-wrap: nowrap;
+}
+.item{
+    width: 20px;
+    height: 20px;
+    background-color: aquamarine;
+}
+.axisTop{
+    justify-content: flex-start;
+}
+.axisCenter{
+    justify-content: center;
+}
+.axisBottom{
+    justify-content: flex-end;
+}
+.itemLeft{
+    align-self: flex-start;
+}
+.itemCenter{
+    align-self: center;
+}
+.itemRight{
+    align-self: flex-end;
+}
+.tAlign{
     justify-content: center;
     align-items: center;
+    text-align: center;
 }
+/* 
+    字体左右居中应该用text-align
+    字体框居中用布局居中方法
+    用字体框的垂直居中来实现字体的垂直居中
+ */
