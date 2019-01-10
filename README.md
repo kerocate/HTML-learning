@@ -15,9 +15,9 @@ as a row[水平] or as a column[竖直].
   shrink to fit the space. It is a shorthand for
   flex-grow, flex-shrink, and flex-basis.
 
-* align-: along the cross-axis(y).  
+* align-: the cross-axis(x).  
 
-* justify-: along the main-axis(x).
+* justify-: the main-axis(y).
 
 * align-items: alignment of items on the Cross Axis
 
