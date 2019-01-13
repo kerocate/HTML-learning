@@ -1,6 +1,9 @@
 # HTML-learning
 ## 最新动态
 
+## 做出了多次滚动，整体切换界面得效果
+<img src='./switcher.gif'>
+
 ## 学会了纯js写动画，以可以分步的形式展现。
 <img src="./MoveAnimation.gif">
 
