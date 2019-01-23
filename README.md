@@ -1,6 +1,12 @@
 # HTML-learning
 ## 最新动态
 
+## 重新认识html的定位 2019.1.23
+<img src='./Positioning.png'>
+
+## 带触屏支持的多次滚动整体界面切换效果，不再依赖滚动条 2019.1.19
+<img src='./swicherfinal.gif'>
+
 ## 做出了多次滚动，整体切换界面得效果
 
 整个页面的切换是依赖滑条的
