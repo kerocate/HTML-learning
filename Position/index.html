@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Positioning</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+    <script src="main.js"></script>
+</head>
+
+
+<body>
+    <h1>这个界面是用来练习和解释定位细节的</h1>
+
+
+    <div>
+        <div-r>r</div-r>
+        <div-a>a</div-a>
+
+        <div-r-ed>red</div-r-ed>
+        <div-a-ed>aed</div-a-ed>
+    </div>
+
+
+    <div>
+        <div-r>r</div-r>
+        <div-a>a</div-a> 
+    </div>
+
+
+    <div>
+        <div-r-ed>red</div-r-ed>
+        <div-a-ed>aed</div-a-ed>
+    </div>
+
+
+    <div>
+        <div-r>r</div-r>
+        <div-r-ed>red</div-r-ed>
+    </div>
+
+
+    <div>
+            <div-a>a</div-a>
+            <div-a-ed>aed</div-a-ed>
+    </div>
+
+    <div style="width: 100px; height: 100px;">占位</div>
+
+    <div style="position: absolute; top: 700px;">
+            <div-r>r</div-r>
+            <div-r-ed>red</div-r-ed>
+    </div>
+    
+    <div style="position: relative; top: 600px;">
+                <div-a>a</div-a>
+                <div-a-ed>aed</div-a-ed>
+    </div>
+
+
+    <clear-tag></clear-tag>
+
+    <p style="top: 100px; position: relative;">
+        可以看出absolute不会撑开外面的div，也就是所指的脱离文档流。<br><br>
+        同理应该也不会受到外面div的效果。<br><br>
+        relative会预留元素显示偏移之前的空间，但是absolute不会。<br><br>
+        relative：视觉偏移<br><br>
+        absolute：直接飞走，不留实体<br><br>
+        都会受到父级元素的影响<br><br>
+        若父级元素没有定位，则往上寻找已定位元素<br><br>
+        所以靠在absolute旁边的relative会陷入<br><br>
+        因为absolute没有实体体积<br><br>
+        但是靠在relative旁边的absolute不会陷入<br><br>
+        因为relative有实体<br><br>
+        发现一个有趣的东西：<br><br>
+        鼠标的反色选择顺序是按照文档流来的<br><br>
+    </p>
+
+</body>
+</html>
