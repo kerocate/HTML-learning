@@ -1,6 +1,8 @@
 # HTML-learning
 ## 最新动态
 
+## :是伪类 ::是伪元素 1.25
+
 ## 重新认识html的定位 2019.1.23
 <img src='./Positioning.png'>
 
