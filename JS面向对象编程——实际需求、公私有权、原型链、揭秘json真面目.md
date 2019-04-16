@@ -350,7 +350,7 @@ let Obja = {
 >
 > 私有方法不仅仅有利于限制对代码的访问：还提供了管理全局命名空间的强大能力，避免非核心的方法弄乱了代码的公共接口部分。
 >
-> 下面的示例展现了如何使用闭包来定义公共函数，并令其可以访问私有函数和变量。这个方式也称为 [模块模式（module pattern）：](http://www.google.com/search?q=javascript+module+pattern)
+> 下面的示例展现了如何使用闭包来定义公共函数，并令其可以访问私有函数和变量。这个方式也称为 模块模式（module pattern）：
 
 ```js
 let Counter = (function() {
@@ -426,11 +426,11 @@ console.log(Counter2.value()); /* 输出 0 */
 //证明Counter1 和 Counter2 完全处于两个不同的空间，互不干扰
 ```
 
-关于闭包的更多知识，大家还可以去看MDN的原文：https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Closures>
+关于闭包的更多知识，大家还可以去看MDN的原文：https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Closures
 
 ​				（谁和我说闭包很简单啦？你学会了吗？）
 
-关于公私有，特权问题大家可以去看这篇文章：https://www.zhangshengrong.com/p/9Oab284adK/>
+关于公私有，特权问题大家可以去看这篇文章：https://www.zhangshengrong.com/p/9Oab284adK/
 
 ## JS面向对象原型链/JS面向对象原理
 
