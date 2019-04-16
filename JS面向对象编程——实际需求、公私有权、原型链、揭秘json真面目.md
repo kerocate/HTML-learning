@@ -551,8 +551,8 @@ console.log(xiaoming.class);//输出 Birds
 
 这里只讲一点，this和面向对象有关的东西，其他的懒得讲了想知道，就看教程吧（跑）：
 
-this 用法：http://www.ruanyifeng.com/blog/2010/04/using_this_keyword_in_javascript.html>
+this 用法：http://www.ruanyifeng.com/blog/2010/04/using_this_keyword_in_javascript.html
 
-this原理：http://www.ruanyifeng.com/blog/2018/06/javascript-this.html>
+this原理：http://www.ruanyifeng.com/blog/2018/06/javascript-this.html
 
 上上次课程
