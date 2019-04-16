@@ -22,16 +22,18 @@
 
   ​	开发游戏的过程当中，有反恐精英和恐怖分子两个阵营，但他们都是属于人类。他们有一样的行为：走路，跑步，发电报，投掷手雷。
 
+  ![csying](.\assets\csying.jpg)
+
   ## 试着用面向过程来写走路这样的行为？
 
   ```javascript
   //伪代码
   
   function walk(direction, player, position, isdead, isheavy, ...){
-      if(isheavy == 1){
+      if(isheavy == true){
           速度函数(-100)；
       }
-      if(isdead == 1){
+      if(isdead == true){
           endPosition = 0;
           return endPosition;
       }
@@ -84,6 +86,8 @@
 
 这两个都是 **绿皮硬核** 代码，优化都很差，源代码在网上能找到，就不提供链接了。有兴趣可以自己去找找看，虽然你们可能没听过没玩过，好吧，可能有喜欢玩steam游戏的人应该知道。
 
+![dengyixia](.\assets\dengyixia.jpg)
+
 ### **你没讲面向对象的代码呢！**
 
 口述一下吧，假如有person这个 **类**，类里面放着上述代码中所判断条件的 **状态属性** ，person这个类里面有自己的 **walk方法**，不同的person实例当中可以 **继承** 来自person类的walk方法并进行其他修改，在main中只需要调用一句 `反恐精英.walk()` 就够啦，许多数据已经在你描述类的时候消化完了。
@@ -131,6 +135,8 @@ ceo.eat(food); // 这个会报错诶！！！！为什么啊？？？？？
 
 也就是说内部可以访问，外部却不能，上节课我没说清楚是否要在外部调用，我只说了要你们内部调用一下封装的方法。但实际上提及使用封装的方法时，有提到：“就像普通的面向对象语法一样就可以了”。**但这句话是有误导性的，我很抱歉！**
 
+![sorry](.\assets\sorry-1555333792459.jpg)
+
 ### **一些很有趣的东西**
 
 ​	在js当中，其实 `{}` 和 `[]` 都是一个对象噢
@@ -156,6 +162,8 @@ let Person = [ //不建议随意的使用这种方法
 ]	// 这些都是静态类(下文会讲静态类)
 ```
 #### 字面量？？ JSON？？VUE？？
+
+![Vuelogo](.\assets\Vuelogo.png)
 
 > （受到我讲错内容的晚上CEO和留下来的几个人谈话的启发）
 
@@ -218,18 +226,9 @@ string str = “hello！”;   // str 为变量，hello！为字面量
 
 回忆完了JSON我们来看看JavaScript当中，如何用这种方法描述一个对象(可以动手试一试)
 
-```javascript
-// 控制台
-> let b = { "firstName":"John" ,"lastName":"Doe"}
----------------------------------------------------------
-> b
-<· ▶{firstName: "John", lastName: "Doe"}
----------------------------------------------------------
-> b.firstName
-<· "John"
+![JSON](.\assets\JSON.png)
 
-// 冒号就相当于一个‘=’
-```
+冒号就相当于一个‘=’
 
 那么以后其实我们可以这样来声明一个类（这是静态类，下一个小节会说明什么是静态类）
 
@@ -254,7 +253,9 @@ console.log(user.getName());//output:fire子海
 ##### **不用学Vue，你听懂了上面的，就能够很直观的看懂Vue的基本使用**
 
 ```javascript
-var app = new Vue({
+    //这里就是创建Vue对象并且将一整个()中的JSON内容传入该对象
+    //Vue() 按照我们之前讲的，它是一个构造函数，对吗？
+var app = new Vue({ 
   el: '#app',
   data: {
     message: 'Hello Vue!'
@@ -276,9 +277,7 @@ var app = new Vue({
 
   
 
-关于更多的创建类的方式下文中涉及原型链的时候还会讲到，但是你想知道更多的话可以去百度
-
-“JS构造器” 或者这里有些链接可以供你参考：
+关于更多的 **创建类** 的方式下文中涉及原型链的时候还会讲到，但是你想知道更多的话可以去百度“JS构造器” 或者这里有些链接可以供你参考：
 
 <http://www.w3school.com.cn/js/pro_js_object_defining.asp>
 
@@ -286,11 +285,15 @@ var app = new Vue({
 
 <https://www.cnblogs.com/blackangle/p/3961352.html>
 
+<https://www.w3cplus.com/javascript/understanding-javascript-constructors.html>
+
 ### **JS中的公私有原理**
 
 **JS对象里面没有私有的概念，没有！！！没有！！！！真的没有！！！！！**（如果我讲错了就是有咯hhhhh）
 
-大家可能会奇怪为什么……好吧这个我解释不了，因为JS的机制很奇怪。
+大家可能会奇怪为什么……好吧这个我解释不了，因为JS的机制很奇怪，JS不是一个面向对象语言，它仅仅只是一个 **对象语言** ，还是当初那句话，万物皆对象。
+
+	>只是因为对象之间可以互相的继承，所以我们可以让一个对象作为一个类来使用
 
 ```javascript
 function name1(params) {
@@ -351,22 +354,25 @@ let Obja = {
 
 ```js
 let Counter = (function() {
-  let privateCounter = 0;
-  function changeBy(val) {
-    privateCounter += val;
-  } //changeBy是一个功能型函数 是一个私有方法
-  return { 
+    
+	let privateCounter = 0;
+    
+	function changeBy(val) {
+		privateCounter += val;
+	}
+    //changeBy是一个功能型函数 是一个私有方法
+	return { 
 //返回的是一整个对象描述（就是在描述Counter本身）这些函数都是公共的
-    increment: function() {
-      				changeBy(1);
-    			},
-    decrement: function() {
-      				changeBy(-1);
-    			},
-    value: function() {
-      			return privateCounter;
-    			}
-  }   
+		increment: function() {
+      					changeBy(1);
+    				},
+    	decrement: function() {
+      					changeBy(-1);
+    				},
+    	value: function() {
+      				return privateCounter;
+    				}
+		}   
 })(); //Counter后面的(function)形成了一个闭包
 
 console.log(Counter.value()); /* 输出 0 */
@@ -420,8 +426,133 @@ console.log(Counter2.value()); /* 输出 0 */
 //证明Counter1 和 Counter2 完全处于两个不同的空间，互不干扰
 ```
 
-关于闭包的更多知识，大家还可以去看MDN的原文：<https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Closures>
+关于闭包的更多知识，大家还可以去看MDN的原文：https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Closures>
 
 ​				（谁和我说闭包很简单啦？你学会了吗？）
 
-## JS面向对象原型链/JS面向对象原理（这个讲不清楚的地方就可以哈哈哈了）
+关于公私有，特权问题大家可以去看这篇文章：https://www.zhangshengrong.com/p/9Oab284adK/>
+
+## JS面向对象原型链/JS面向对象原理
+
+> （这个讲不清楚的地方就可以哈哈哈了）
+
+这里首先要说明的是，每一个上述的创建对象 ( 类也是对象，实例也是对象，万物皆对象 ) 的方法，生成的都是一个具有 **“原型”** 的
+
+这个 **原型** 是什么呢？是一个对象的 **子类** `__proto__` 。
+
+![233](.\assets\233.png)
+
+**原型是一个子类？？？？？？明明 “对象D” 继承于 `__proto__` 为什么它却不是父类呢？？？**
+
+
+**（这个地方我也讲不清楚，因为没法讲，这是JS的一个机制，起码现阶段没法讲）**
+
+![meibanfa](.\assets\meibanfa.jpg)
+
+### **题外话**
+
+#### 创建一个没有原型的对象
+
+```javascript
+//创建一个没有原型的对象的方法
+let nullObj = Object.create(null);
+//关于Object这个类的详细资料可以自行查阅MDN
+```
+
+#### 一个不怎么好笑的笑话
+
+![hahaha](.\assets\hahaha.png)
+
+​	这是这个笑话一个完整的原型链：
+
+​		ObjA → myObj ( constructor ) → Object → null
+
+​	笑话中，继承关系是按照原型链来的，可是父子关系完全是相反的
+
+​		ObjA ＞ myObj ( constructor ) ＞ Object ＞ null
+
+-----
+
+### **通过原型链操作对象**
+
+你可以通过修改 **“原型”** 来修改已有的对象，你也可以通过修改对象 **“本身”** 来达到一样的目的。
+
+> 本节里面的例子改自廖雪峰老师的教程，如果想更清楚的了解，请自己访问 ：<https://www.liaoxuefeng.com/wiki/001434446689867b27157e896e74d51a89c25cc8b43bdb3000/001434499763408e24c210985d34edcabbca944b4239e20000>
+
+​	**改变**原型从而修改对象的例子：
+
+```javascript
+let Students = {
+    class: 'Students',
+    height: 1.2,
+};
+
+let xiaoming = {
+    age:18
+};
+
+let Birds = {
+    class:'Birds'
+};
+
+xiaoming.__proto__ = Students; 
+//设置小明的原型为Students
+
+console.log(xiaoming.class); //输出 Students
+
+console.log(xiaoming.age); //输出 18
+//age体现了多态，即使继承于父代，但也拥有自己的特征
+
+xiaoming.__proto__ = Birds; 
+//设置小明的原型为Birds
+
+console.log(xiaoming.class);//输出 Birds
+```
+
+​	**修改**原型从而修改对象的例子：
+
+```javascript
+let Students = {
+    class: 'Students',
+    height: 1.2,
+};
+
+let xiaoming = {
+    age:18
+};
+
+xiaoming.__proto__ = Students; 
+//设置小明的原型为Students
+
+console.log(xiaoming.class); //输出 Students
+
+Students.class = 'Birds'; 
+
+console.log(xiaoming.class);//输出 Birds
+```
+
+### **prototype 和 \__proto__ ？？？**
+
+这里就不多讲了，这两个东西的意义类似，只是出现的场景不同，而且一般情况下建议使用 `prototype` 而不是 `__proto__` ( `__proto__` 现在还在草稿阶段，但主流浏览器早就支持 \__proto__ )
+
+有关他们的辨析：<https://github.com/creeperyang/blog/issues/9>
+
+**想要彻底理解原型链？ 看看廖雪峰老师的教程吧！** ：<https://www.liaoxuefeng.com/wiki/001434446689867b27157e896e74d51a89c25cc8b43bdb3000/001434499763408e24c210985d34edcabbca944b4239e20000>
+
+这篇文章的最后有一副分析原型链的图，画的很好：<https://segmentfault.com/a/1190000002701241>
+
+---------
+
+### **this代表什么呢？**
+
+`this` 是 JavaScript 语言的一个关键字。
+
+它是函数运行时，在函数体内部自动生成的一个对象，只能在函数体内部使用。
+
+这里只讲一点，this和面向对象有关的东西，其他的懒得讲了想知道，就看教程吧（跑）：
+
+this 用法：http://www.ruanyifeng.com/blog/2010/04/using_this_keyword_in_javascript.html>
+
+this原理：http://www.ruanyifeng.com/blog/2018/06/javascript-this.html>
+
+上上次课程
