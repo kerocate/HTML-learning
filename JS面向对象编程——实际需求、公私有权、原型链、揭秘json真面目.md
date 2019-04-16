@@ -86,7 +86,7 @@
 
 这两个都是 **绿皮硬核** 代码，优化都很差，源代码在网上能找到，就不提供链接了。有兴趣可以自己去找找看，虽然你们可能没听过没玩过，好吧，可能有喜欢玩steam游戏的人应该知道。
 
-![dengyixia](.\assets\dengyixia.jpg)
+![dengyixia](./assets/dengyixia.jpg)
 
 ### **你没讲面向对象的代码呢！**
 
@@ -135,7 +135,7 @@ ceo.eat(food); // 这个会报错诶！！！！为什么啊？？？？？
 
 也就是说内部可以访问，外部却不能，上节课我没说清楚是否要在外部调用，我只说了要你们内部调用一下封装的方法。但实际上提及使用封装的方法时，有提到：“就像普通的面向对象语法一样就可以了”。**但这句话是有误导性的，我很抱歉！**
 
-![sorry](.\assets\sorry-1555333792459.jpg)
+![sorry](./assets/sorry-1555333792459.jpg)
 
 ### **一些很有趣的东西**
 
@@ -163,7 +163,7 @@ let Person = [ //不建议随意的使用这种方法
 ```
 #### 字面量？？ JSON？？VUE？？
 
-![Vuelogo](.\assets\Vuelogo.png)
+![Vuelogo](./assets/Vuelogo.png)
 
 > （受到我讲错内容的晚上CEO和留下来的几个人谈话的启发）
 
@@ -226,7 +226,7 @@ string str = “hello！”;   // str 为变量，hello！为字面量
 
 回忆完了JSON我们来看看JavaScript当中，如何用这种方法描述一个对象(可以动手试一试)
 
-![JSON](.\assets\JSON.png)
+![JSON](./assets/JSON.png)
 
 冒号就相当于一个‘=’
 
@@ -440,14 +440,14 @@ console.log(Counter2.value()); /* 输出 0 */
 
 这个 **原型** 是什么呢？是一个对象的 **子类** `__proto__` 。
 
-![233](.\assets\233.png)
+![233](./assets/233.png)
 
 **原型是一个子类？？？？？？明明 “对象D” 继承于 `__proto__` 为什么它却不是父类呢？？？**
 
 
 **（这个地方我也讲不清楚，因为没法讲，这是JS的一个机制，起码现阶段没法讲）**
 
-![meibanfa](.\assets\meibanfa.jpg)
+![meibanfa](./assets/meibanfa.jpg)
 
 ### **题外话**
 
@@ -461,7 +461,7 @@ let nullObj = Object.create(null);
 
 #### 一个不怎么好笑的笑话
 
-![hahaha](.\assets\hahaha.png)
+![hahaha](./assets/hahaha.png)
 
 ​	这是这个笑话一个完整的原型链：
 
