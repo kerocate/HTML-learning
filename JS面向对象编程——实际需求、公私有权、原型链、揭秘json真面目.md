@@ -366,10 +366,10 @@ let Counter = (function() {
 		increment: function() {
       					changeBy(1);
     				},
-    	decrement: function() {
+    		decrement: function() {
       					changeBy(-1);
     				},
-    	value: function() {
+    		value: function() {
       				return privateCounter;
     				}
 		}   
