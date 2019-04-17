@@ -533,9 +533,9 @@ console.log(xiaoming.class);//输出 Birds
 
 ### **prototype 和 \__proto__ ？？？**
 
-这里就不多讲了，这两个东西的意义类似，只是出现的场景不同，而且一般情况下建议使用 `prototype` 而不是 `__proto__` ( `__proto__` 现在还在草稿阶段，但主流浏览器早就支持 \__proto__ )
+这里就不多讲了，这两个东西的意义近乎一致，只是出现的场景不同，而且一般情况下建议使用 `prototype` 而不是 `__proto__` ( `__proto__` 现在还在草稿阶段，但主流浏览器早就支持 \__proto__ )
 
-有关他们的辨析：<https://github.com/creeperyang/blog/issues/9>
+有关他们区别的辨析：<https://github.com/creeperyang/blog/issues/9>
 
 **想要彻底理解原型链？ 看看廖雪峰老师的教程吧！** ：<https://www.liaoxuefeng.com/wiki/001434446689867b27157e896e74d51a89c25cc8b43bdb3000/001434499763408e24c210985d34edcabbca944b4239e20000>
 
@@ -543,7 +543,7 @@ console.log(xiaoming.class);//输出 Birds
 
 ---------
 
-### **this代表什么呢？**
+### **this在构造函数创建的类中表什么呢？**
 
 `this` 是 JavaScript 语言的一个关键字。
 
@@ -556,3 +556,85 @@ this 用法：http://www.ruanyifeng.com/blog/2010/04/using_this_keyword_in_javas
 this原理：http://www.ruanyifeng.com/blog/2018/06/javascript-this.html
 
 上上次课程
+
+当中我们有提到
+
+```javascript
+function Persion(name, age){
+    this.name = name;
+    this.age  = age;
+    function eat(food){
+        ...
+    }
+    function talk(words){
+        ...
+    }
+}
+        
+let ceo = new Persion(ceo, 18);
+```
+
+现在我们知道，没有用this的方法相当于是私有的。那么怎么样把它变成外面可以访问的呢？
+
+```javascript
+function Persion(name, age){
+    this.name = name;
+    this.age = age;
+    this.eat = function(food){
+        console.log('ate');
+    }
+}
+        
+let ceo = new Persion('ceo', 18);
+
+ceo.eat();	//输出ate
+```
+
+这样以来eat()方法就可以在外面被调用了。
+
+### **重点是this在原型链当中起到的作用**
+
+我们可以看到用了this的Person对象，实例化成ceo之后拥有三个特征，分别是两个属性age和name，还有一个方法eat。
+
+![QQ图片20190417173115](assets/QQ图片20190417173115-1555493538696.png)
+
+最神奇的地方来了，上文中我们讲到过 \_\_proto\_\_ 指的是他的原型，那么我们不妨探索一下，ceo的原型是什么样的呢？
+
+![QQ图片20190417173524](assets/QQ图片20190417173524.png)
+
+不难看到 `__proto__` → `constructor` (Person这个类是通过构造函数来定义的，所以原型应该是这个构造函数) 也就是Person这个类里面并没有两个属性age和name，一个方法eat。(图中的name是函数自己的函数名)
+
+哈？？？？？？？？？？也就是说this在这个时候指的是实例化的对象？？然而用this不会改变构造函数的原型？
+
+是这样的，接下来我们来证明：
+
+```javascript
+function Persion(name, age){
+    this.name = name;
+    this.age = age;
+    this.eat = function(food){
+        console.log('ate');
+    }
+}
+        
+let ceo = new Persion('ceo', 18);
+
+let cto = Object.create(null); //创建一个空对象
+cto.__proto__ = Persion; //改变其原型为Persion
+
+ceo.eat();
+```
+
+这里是结果：
+
+![QQ图片20190417174201](assets/QQ图片20190417174201.png)
+
+的确里面什么都没有。也就是说使用了this这个关键字的时候，所有代this的内容都会在初始化的时候被加到你创建的实例上面，而原型中是不存在的。
+
+
+
+# 那么基本内容都讲完了
+
+## 我们写点什么作业好呢？
+
+看情况吧\~\~\~\~\~\~\~
