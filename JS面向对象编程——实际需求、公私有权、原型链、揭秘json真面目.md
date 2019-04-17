@@ -126,7 +126,7 @@ function Persion(name, age){
     }
 }
         
-let ceo = new Persion(ceo, 18);
+let ceo = new Persion('ceo', 18);
 
 ceo.eat(food); // 这个会报错诶！！！！为什么啊？？？？？
 // 难道我封装的这个一点用都没有嘛？？？？？？？
