@@ -122,7 +122,7 @@
         </div>
 
         <script language="javascript" type="text/javascript">
-        window.onload = document.querySelector("#container").addEventListener('scroll',()=>{
+        document.querySelector("#container").onscroll = ()=>{
             let leftS = document.querySelector("#container").scrollLeft
             document.querySelector('#one').style.transform = 'translateX('+leftS*0.3+"px)";
             document.querySelector('#two').style.transform = 'translateX('+leftS*0.2+"px)";
@@ -132,7 +132,7 @@
             document.querySelector('#front').style.transform = 'translateX('+leftS*0.4+"px)";
                 // console.log(document.querySelector("#container").scrollLeft);
                 // console.log(document.querySelector("#container").scrollTop);
-            })
+            }
         </script>
     </body>
 
