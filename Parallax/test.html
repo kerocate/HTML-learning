@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1, user-scalable=no">
+        <script src="jquery.js.下载"></script>
+        <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
+        <!-- <meta http-equiv="X-UA-Compatible" content="ie=edge"> -->
+        <title>mountain</title>
+        <style>
+            html,
+            body {
+                height: 100%;
+                /* width: 100%; */
+            }
+
+            * {
+                font-size: 0;
+                padding: 0;
+                margin: 0;
+            }
+
+            .container {
+                perspective: 1px;
+                display: inline-block;
+                height: 100%;
+                width: 100%;
+                /* transform-style: preserve-3d; */
+                position: relative;
+                /* transform: rotateY(0deg); */
+                overflow: auto;
+            }
+
+            #bg {
+                position: absolute;
+                height: 100%;
+                width: auto;
+                z-index: -5;
+                transform: translateZ(0px);
+            }
+
+            .mounts {
+                position: absolute;
+                top: 0;
+                /* perspective: 0; */
+                /* width: 100%; */
+                /* width: auto; */
+                transform-style: preserve-3d;
+                height: 100%;
+                width: 100%;
+                /* position: relative; */
+
+            }
+
+            .img {
+                height: 70%;
+                position: absolute;
+                overflow: hidden;
+                /* bottom: 0; */
+            }
+
+            #one {
+                top: 29%;
+                z-index: 1;
+                transform: translate3d(-118%, 25%, -1px)scale(2);
+            }
+
+            #two {
+                top: 20%;
+                left: 17%;
+                transform: translate3d(-88%, 30%, -2px)scale(3);
+            }
+
+            #three {
+                left: 50%;
+                top: 20%;
+                transform: translate3d(65%, 14%, -1px)scale(2.5);
+            }
+
+            #four {
+                left: 70%;
+                top: 20%;
+                z-index: 1;
+            }
+
+            #front {
+                bottom: 0;
+                height: 31.5%;
+                z-index: 3;
+                /* transform: translate3d(0,0,-1px)scale(2); */
+            }
+
+            #behind {
+                bottom: 0;
+                height: 27.75%;
+                z-index: 2;
+            }
+        </style>
+
+    </head>
+
+    <body>
+        <div class="container" id="container">
+            <div style="position: relative; height: 100%; overflow: hidden; width: 203vh">
+                <img src="img1/bg.png" id="bg" />
+            </div> <!-- 占位盒子 -->
+            <div style="top: 0; position: absolute; overflow: hidden; height: 100%; width: 203vh"><!-- 视口盒子 -->
+                <div class="mounts" id="mounts"><!-- 视差元素容器盒子 -->
+                    <img src="img1/one.png" id="one" class="img" />
+                    <img src="img1/two.png" id="two" class="img" />
+                    <img src="img1/three.png" id="three" class="img" />
+                    <img src="img1/four.png" id="four" class="img" />
+                    <img src="img1/behind.png" id="behind" class="img" />
+                    <img src="img1/front.png" id="front" class="img" />
+                </div>
+            </div>
+        </div>
+        </div>
+
+        <script language="javascript" type="text/javascript">
+
+            // width_screen = screen.width;
+            // height_screen = screen.height;
+            // availWidth_screen = screen.availWidth;
+            // availHeight_screen = screen.availHeight;
+            // colorDepth_screen = screen.colorDepth;
+            // document.getElementById("bg").style.height = height_screen+"px";
+            // document.write("你的屏幕宽为：" + width_screen + "你的屏幕高为：" + height_screen + "你的屏幕可用宽为：" + availWidth_screen + "你的屏幕可用高为：" + availHeight_screen + "你的颜色设置所有为数为：" + colorDepth_screen);
+            // let x = availHeight_screen;
+            // let container = document.getElementById("container");
+            // let bg = document.getElementById("bg");
+            // let three = document.getElementById("three");
+            // container.style.width = x + "px";
+            // container.style.height = x*2.0835 + "px";
+            // bg.style.height = x + "px";
+            // bg.style.width = x*2.08325 + "px";
+            // three.style.height = 0.7175*x + "px";
+            // three.style.width  = 0.78*x + "px";
+            // three.style.left   = -1*x + "px";
+            // three.style.top    = 0.5789037037*x + "px";
+            let width;
+            let bg = document.querySelector("#bg");
+            let container = document.querySelectorAll(".container")[0];
+            let three = document.getElementById("three");
+            let mounts = document.getElementById("mounts");
+            // let aa = document.getElementsByClassName("aa");
+
+
+
+
+            // function getScrollbarWidth() {
+            //     var odiv = document.createElement('div'),//创建一个div
+            //         styles = {
+            //             width: '100px',
+            //             height: '100px',
+            //             overflowY: 'scroll'//让他有滚动条
+            //         }, i, scrollbarWidth;
+            //     for (i in styles) odiv.style[i] = styles[i];
+            //     document.body.appendChild(odiv);//把div添加到body中
+            //     scrollbarWidth = odiv.offsetWidth - odiv.clientWidth;//相减
+            //     odiv.remove();//移除创建的div
+            //     return scrollbarWidth;//返回滚动条宽度
+            // }
+
+            console.dir(getScrollbarWidth());
+            $(function () {
+                $(".container").scroll(function () {
+                    var aa = $(this).scrollLeft()
+
+                    if (aa > 15) {
+
+                        container.scrollLeft = 15
+                        console.log(container.scrollLeft)
+                    }
+                    console.log("滚动条位置" + aa)
+                })
+
+            })
+
+            window.onload = function () {
+                width = bg.offsetWidth;
+                console.log(width);
+                container.style.width = width + "px";
+                console.log(mounts.getBoundingClientRect());
+            }
+
+            //当浏览器被重置大小时执行js
+            window.onresize = function () {
+                width = bg.offsetWidth;
+                console.log(width);
+                container.style.width = width + "px";
+                console.log(mounts.getBoundingClientRect());
+            };
+
+
+        </script>
+    </body>
+
+</html>
